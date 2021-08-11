@@ -14,7 +14,6 @@
     "files":{
         "url":"/u01/servisoftsFiles/calistenia/"
     },
-    me gusta mas esta linea de codigo
     "data_base": {
         "puerto": 5432,
         "pass": "fullparts123.",
@@ -45,6 +44,6 @@
     },
     "socket_server": {
         "puerto": 10018,
-        "ip": "192.168.0.199"
+        "ip": "192.168.0.207"
     }
 }

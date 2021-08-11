@@ -61,15 +61,6 @@ public class EmailRegistroUsr extends Thread {
             // Logger.getLogger(Email.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    private static String getHtml1(JSONObject data) {
-        String html = "<h1>Glup</h1>";
-        html+="<p>Bienvenido a glup.</p>";
-        html+="<p>Nueva contraseña: "+data.getString("pass")+"</p>";
-        html+="<p>Verifique su usuario</p>";
-        html+="<a href='https://www.glup.com'>https://www.glup.com</a>";
-        html+="<p>Glub.</p>";
-        return html;
-    }
     private static String getHtml(JSONObject data) throws JSONException {
         String cuerpo = "";
             try {

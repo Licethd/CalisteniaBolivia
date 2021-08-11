@@ -67,7 +67,7 @@ public class Manejador {
                     break;
                 }
                 case "servicio": {
-                    new Servicio(data, session);
+                    new servicio(data, session);
                     break;
                 }
                 case "paquete": {
@@ -104,6 +104,14 @@ public class Manejador {
                 }
                 case "tipoPago": {
                     new TipoPago(data, session);
+                    break;
+                }
+                case "cajaMovimiento": {
+                    new CajaMovimiento(data, session);
+                    break;
+                }
+                case "cajaTipoMovimiento": {
+                    new CajaTipoMovimiento(data, session);
                     break;
                 }
                 default:

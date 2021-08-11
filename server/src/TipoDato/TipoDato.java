@@ -1,6 +1,5 @@
 package TipoDato;
 
-import java.io.IOException;
 import java.util.Base64;
 
 import org.json.JSONObject;

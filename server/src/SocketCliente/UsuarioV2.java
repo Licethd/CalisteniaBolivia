@@ -6,7 +6,6 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import Server.SSSAbstract.SSServerAbstract;
 import Server.SSSAbstract.SSSessionAbstract;
-import component.Manejador;
 
 public class UsuarioV2 {
 

@@ -76,6 +76,16 @@ public class Caja {
         }
     }
 
+    public static JSONObject getActiva(String key_usuario) {
+        try {
+            String consulta =  "select caja_get_activa('"+key_usuario+"') as json";
+            return Conexion.ejecutarConsultaObject(consulta);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     public void getByKey(JSONObject obj, SSSessionAbstract session) {
         try {
             String consulta =  "select get_by_key('caja','"+obj.getString("key")+"') as json";
@@ -121,7 +131,23 @@ public class Caja {
             obj.put("estado", "error");
             e.printStackTrace();
         }
+    }
 
+
+    public static JSONObject addVentaServicio(String key_caja, String key_usuario, String key_tipo_pago, double monto, JSONObject data) throws SQLException{
+        JSONObject caja_movimiento = new JSONObject();
+        caja_movimiento.put("key", UUID.randomUUID().toString());
+        caja_movimiento.put("key_caja", key_caja);
+        caja_movimiento.put("key_caja_tipo_movimiento", 3);
+        caja_movimiento.put("key_tipo_pago", key_tipo_pago);
+        caja_movimiento.put("descripcion", "Venta de servicio");
+        caja_movimiento.put("monto", monto);
+        caja_movimiento.put("data", data);
+        caja_movimiento.put("fecha_on", "now()");
+        caja_movimiento.put("estado", 1);
+        Conexion.insertArray("caja_movimiento", new JSONArray().put(caja_movimiento));
+
+        return caja_movimiento;
     }
 
     public void cierre(JSONObject obj, SSSessionAbstract session) {

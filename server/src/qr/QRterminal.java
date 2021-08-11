@@ -7,25 +7,12 @@ import com.google.zxing.WriterException;
 import com.google.zxing.client.j2se.MatrixToImageWriter;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
-
-import org.bouncycastle.pqc.math.linearalgebra.Matrix;
-import org.bouncycastle.util.encoders.Base64;
-
-import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.Hashtable;
-
-import javax.imageio.ImageIO;
 
 public class QRterminal {
     public static String getQr(String text, String nombre) {
-        MessageDigest digest;
         String s = "";
         try {
             int width = 200;
@@ -38,7 +25,7 @@ public class QRterminal {
             try {
                 FileOutputStream stream = new FileOutputStream(nombre);
                 MatrixToImageWriter.writeToStream(bitMatrix, "png", stream);
-                File file = new File("parent");
+                
                 
             } catch (IOException e) {
                 // TODO Auto-generated catch block
@@ -73,7 +60,7 @@ public class QRterminal {
     public static final String ANSI_WHITE = "\u001B[37m";
 
     public static void main(String[] args) throws Exception {
-        String text = "MIICCjCCAbSgAwIBAgIEXy0J4jANBgkqhkiG9w0BAQsFADCBizELMAkGA1UEBhMCQk8xCzAJBgNVBAgMAlNDMRMwEQYDVQQHDApTYW50YSBDcnV6MRgwFgYDVQQKDA9TZXJ2aXNvZnRzIFNybC4xDTALBgNVBAsMBFN2c3MxDTALBgNVBAMMBHJvb3QxIjAgBgkqhkiG9w0BCQEWE3Jvb3RAc2Vydmlzb2Z0cy5jb20wHhcNMjAwODA3MDc1OTMwWhcNMjAwODA3MDgwMDMwWjCBizELMAkGA1UEBhMCQk8xCzAJBgNVBAgMAlNDMRMwEQYDVQQHDApTYW50YSBDcnV6MRgwFgYDVQQKDA9TZXJ2aXNvZnRzIFNybC4xDTALBgNVBAsMBFN2c3MxDTALBgNVBAMMBHJvb3QxIjAgBgkqhkiG9w0BCQEWE3Jvb3RAc2Vydmlzb2Z0cy5jb20wXDANBgkqhkiG9w0BAQEFAANLADBIAkEAmbQre0GgYtvxqkPTCbB5BkxMi+DbyOfDbuh8UElDITcwk94yK+mrfALmvAhZLaqWg7/1r+AJPbviO7rHaXOW+QIDAQABMA0GCSqGSIb3DQEBCwUAA0EAjvFTj/4YAmLu9xvDhZD45XefLnzO0JtXao0LbsaPYoPHHjLQIjd4jIM1zRWKSh/60vhbdIBayEyEEz955rai8A==";
+        //String text = "MIICCjCCAbSgAwIBAgIEXy0J4jANBgkqhkiG9w0BAQsFADCBizELMAkGA1UEBhMCQk8xCzAJBgNVBAgMAlNDMRMwEQYDVQQHDApTYW50YSBDcnV6MRgwFgYDVQQKDA9TZXJ2aXNvZnRzIFNybC4xDTALBgNVBAsMBFN2c3MxDTALBgNVBAMMBHJvb3QxIjAgBgkqhkiG9w0BCQEWE3Jvb3RAc2Vydmlzb2Z0cy5jb20wHhcNMjAwODA3MDc1OTMwWhcNMjAwODA3MDgwMDMwWjCBizELMAkGA1UEBhMCQk8xCzAJBgNVBAgMAlNDMRMwEQYDVQQHDApTYW50YSBDcnV6MRgwFgYDVQQKDA9TZXJ2aXNvZnRzIFNybC4xDTALBgNVBAsMBFN2c3MxDTALBgNVBAMMBHJvb3QxIjAgBgkqhkiG9w0BCQEWE3Jvb3RAc2Vydmlzb2Z0cy5jb20wXDANBgkqhkiG9w0BAQEFAANLADBIAkEAmbQre0GgYtvxqkPTCbB5BkxMi+DbyOfDbuh8UElDITcwk94yK+mrfALmvAhZLaqWg7/1r+AJPbviO7rHaXOW+QIDAQABMA0GCSqGSIb3DQEBCwUAA0EAjvFTj/4YAmLu9xvDhZD45XefLnzO0JtXao0LbsaPYoPHHjLQIjd4jIM1zRWKSh/60vhbdIBayEyEEz955rai8A==";
         //System.out.println(getQr(text));
     }
 }

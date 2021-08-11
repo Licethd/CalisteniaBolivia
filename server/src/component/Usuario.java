@@ -54,7 +54,6 @@ public class Usuario {
         System.out.println(obj.toString());
         String deviceKey = obj.getString("deviceKey");
         JSONObject data = obj.getJSONObject("data");
-        JSONObject platform = obj.getJSONObject("platform");
         try{
             session.setKeyDevice(deviceKey);    
             session.setKeyUsuario(data.getString("key"));
@@ -79,7 +78,6 @@ public class Usuario {
     }
 
     public void recuperarPass(JSONObject obj, SSSessionAbstract session) {
-        String texto = obj.getString("data");
         JSONObject data = new JSONObject();
         data.put("key", "sa323-23r2r-2r-23r-23r");
         obj.put("data", data);

@@ -1,14 +1,7 @@
 package SocketCliente;
 
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.util.Base64;
-import util.*;
-
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
-
 import Server.SSSAbstract.SSServerAbstract;
 import Server.SSSAbstract.SSSessionAbstract;
 import component.Manejador;

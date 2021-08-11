@@ -1,6 +1,5 @@
 package component;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 import Server.SSSAbstract.SSServerAbstract;

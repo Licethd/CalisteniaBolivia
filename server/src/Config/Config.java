@@ -128,6 +128,7 @@ public class Config {
                     valor = file.read();
                     System.out.print(".");
                 }
+                file.close();
                 config = new JSONObject(configJson);
                 System.out.println("100%");
                 System.out.println("Ready.");

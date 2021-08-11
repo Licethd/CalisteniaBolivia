@@ -39,7 +39,6 @@ public class HandleRequestRoot {
         // System.out.println(type);
         // printRequestInfo(exchange);
 
-        String response = "This is the response at " + requestURI;
         if (!file.exists()) {
             file = new File("./default.png");
         }

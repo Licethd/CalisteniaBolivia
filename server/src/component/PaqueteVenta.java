@@ -94,6 +94,13 @@ public class PaqueteVenta {
             paquete_venta.put("fecha_on",fecha_on);
             paquete_venta.put("estado",1);
 
+            JSONObject caja_activa = Caja.getActiva(obj.getString("key_usuario"));
+            if(caja_activa == null){
+                obj.put("estado", "error");
+                obj.put("error", "sin_caja");
+                return;
+            }
+
             JSONArray clientes = obj.getJSONArray("clientes");
             JSONArray paquete_venta_usuarios = new JSONArray();
             JSONObject paquete_venta_usuario;
@@ -108,12 +115,18 @@ public class PaqueteVenta {
                 paquete_venta_usuario.put("estado",1);
                 paquete_venta_usuarios.put(paquete_venta_usuario);
             }
+            String key_tipo_pago = null;
+            if(paquete_venta.has("key_tipo_pago")){
+                if(!paquete_venta.isNull("key_tipo_pago")){
+                    key_tipo_pago = paquete_venta.getString("key_tipo_pago");
+                }
+            }
+            JSONObject caja_movimiento = Caja.addVentaServicio(caja_activa.getString("key"), obj.getString("key_usuario"), key_tipo_pago, paquete_venta.getDouble("monto"), paquete_venta.getJSONObject("data"));
+            paquete_venta.put("key_caja_movimiento", caja_movimiento.getString("key"));
 
             Conexion.insertArray("paquete_venta", new JSONArray().put(paquete_venta));
             Conexion.insertArray("paquete_venta_usuario", paquete_venta_usuarios);
             Conexion.historico(obj.getString("key_usuario"), paquete_venta.getString("key"), "paquete_venta_registro", paquete_venta);
-
-
 
             JSONArray clients = new JSONArray(clientes.toString()); 
 
