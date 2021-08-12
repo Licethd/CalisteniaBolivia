@@ -7,6 +7,8 @@ import java.io.IOException;
 
 import org.json.JSONObject;
 
+import util.console;
+
 public class Config {
 
     private static JSONObject config = null;
@@ -119,20 +121,18 @@ public class Config {
     public static JSONObject getJSON() {
         try {
             if (config == null) {
-                System.out.print("Leyendo archivos config.json");
+                console.log(console.ANSI_GREEN ,"Leyendo archivos config.json");
                 FileReader file = new FileReader("config.json");
                 int valor = file.read();
                 String configJson = "";
                 while (valor != -1) {
                     configJson = configJson + String.valueOf(((char) valor));
                     valor = file.read();
-                    System.out.print(".");
+                    console.logln(console.ANSI_GREEN ,".");
                 }
                 file.close();
                 config = new JSONObject(configJson);
-                System.out.println("100%");
-                System.out.println("Ready.");
-
+                console.log(console.ANSI_GREEN ,"100% Ready.");
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();

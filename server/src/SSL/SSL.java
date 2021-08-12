@@ -220,7 +220,7 @@ public class SSL {
         JSONObject servicio = socket_client.getJSONObject("servicio");
         JSONObject cert = servicio.getJSONObject("cert");
         if (getCert(cert.getString("OU")) != null) {
-            console.log(console.ANSI_PURPLE,"Certificado " + cert.getString("OU") + " cargado con exito.");
+            console.log(console.ANSI_GREEN,"Certificado " + cert.getString("OU") + " cargado con exito.");
             return true;
         }
 
@@ -256,7 +256,7 @@ public class SSL {
             JSONObject certConfig = ssl.getJSONObject("cert");
 
             if (getCert(certConfig.getString("OU")) != null) {
-                console.log(console.ANSI_PURPLE,"Certificado " + certConfig.getString("OU") + " cargado con exito.");
+                console.log(console.ANSI_GREEN,"Certificado " + certConfig.getString("OU") + " cargado con exito.");
 
                 return true;
             }

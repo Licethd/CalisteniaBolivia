@@ -1,5 +1,6 @@
 {
     "ss": "servisofts.calistenia",
+    "production":false,
     "socket_client": {
         "servicio": {
             "puerto": 10001,

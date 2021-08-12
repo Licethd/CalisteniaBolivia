@@ -48,7 +48,7 @@ public class TipoPago {
 
     public void getAll(JSONObject obj, SSSessionAbstract session) {
         try {
-            String consulta =  "select get_all('tipo_pago') as json";
+            String consulta = "select get_all('tipo_pago') as json";
             JSONObject data = Conexion.ejecutarConsultaObject(consulta);
             Conexion.historico(obj.getString("key_usuario"), "tipo_pago_getAll", data);
             obj.put("data", data);
@@ -99,9 +99,7 @@ public class TipoPago {
 
             Conexion.historico(obj.getString("key_usuario"), tipo_pago.getString("key"), "tipo_pago_registro", tipo_pago);
             obj.put("data", tipo_pago);
-            obj.put("estado", "exito");
-
-            //SSServerAbstract.sendServer(SSServerAbstract.TIPO_SOCKET_WEB, obj.toString());
+            obj.put("estado", "exito");            
             SSServerAbstract.sendServer(SSServerAbstract.TIPO_SOCKET, obj.toString());
         } catch (SQLException e) {
             obj.put("estado", "error");
@@ -117,7 +115,6 @@ public class TipoPago {
             Conexion.historico(obj.getString("key_usuario"), tipo_pago.getString("key"), "tipo_pago_editar", tipo_pago);
             obj.put("data", tipo_pago);
             obj.put("estado", "exito");
-            //SSServerAbstract.sendServer(SSServerAbstract.TIPO_SOCKET_WEB, obj.toString());
             SSServerAbstract.sendServer(SSServerAbstract.TIPO_SOCKET, obj.toString());
         } catch (SQLException e) {
             obj.put("estado", "error");
@@ -133,7 +130,6 @@ public class TipoPago {
         if(!f.exists()) f.mkdirs();
         obj.put("dirs", new JSONArray().put(f.getPath()+"/"+obj.getString("key")));
         obj.put("estado", "exito");
-        //SSServerAbstract.sendServer(SSServerAbstract.TIPO_SOCKET_WEB, obj.toString());
         SSServerAbstract.sendServer(SSServerAbstract.TIPO_SOCKET, obj.toString());
     }
 }

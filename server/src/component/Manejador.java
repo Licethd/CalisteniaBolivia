@@ -2,6 +2,7 @@ package component;
 
 import org.json.JSONObject;
 
+import SSComponent.SSManejador;
 import Server.SSSAbstract.SSSessionAbstract;
 import SocketCliente.SocketCliete;
 import util.console;
@@ -143,5 +144,6 @@ public class Manejador {
                 SocketCliete.send("roles_permisos", data, session);
             break;
         }
+        SSManejador.navigate(data, session);
     }
 }

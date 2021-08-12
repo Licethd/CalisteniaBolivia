@@ -28,7 +28,10 @@ public class console {
     public static void log( String color,String txt){
         System.out.println(color+txt+ANSI_RESET);
     }
-       public static void error(String txt){
+    public static void logln( String color,String txt){
+        System.out.print(color+txt+ANSI_RESET);
+    }
+    public static void error(String txt){
         System.out.println(ANSI_RED_BACKGROUND+ANSI_WHITE+txt+ANSI_RESET);
     }
 }

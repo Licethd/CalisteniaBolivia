@@ -1,4 +1,5 @@
 import Config.Config;
+import SSComponent.SSInit;
 import SSL.SSL;
 import SocketCliente.SocketCliete;
 import conexion.Conexion;
@@ -25,10 +26,11 @@ public class App {
             console.error("Server closed.");
             return;
         }
-        System.out.println(SSL.getPem(SSL.getCert(Config.getJSON().getString("nombre"))));
+        console.log(console.ANSI_GREEN ,SSL.getPem(SSL.getCert(Config.getJSON().getString("nombre"))));
         SocketCliete.enableReconect(true);
         SocketCliete.Start(Config.getJSON("socket_client").getJSONObject("servicio"));
         Conexion.setConexion(Config.getJSON("data_base"));
+        SSInit.initFunctions();
         ConexionMySql.setConexion(Config.getJSON("data_base_mysql")); 
         //new Migrador().run();
     }

@@ -80,19 +80,19 @@ public class Conexion {
                         return con;
                     }
                 }
-                console.log(console.ANSI_YELLOW,"Conectando a la base de datos postgress...");
+                console.log(console.ANSI_BLUE,"Conectando a la base de datos postgress...");
                 System.out.println();
                 con = DriverManager.getConnection("jdbc:postgresql://" + ip + ":" + puerto + "/" + bd_name, usuario,
                         contrasena);
-                        console.log(console.ANSI_YELLOW,"Conexion exitosa postgres");
+                        console.log(console.ANSI_BLUE,"Conexion exitosa postgres");
                 return con;
             } catch (SQLException e) {
                 // restore_backup();
-                console.log(console.ANSI_YELLOW,"Base de datos restaurada exitosamente");
+                console.log(console.ANSI_BLUE,"Base de datos restaurada exitosamente");
             }
             return con;
         } catch (Exception e) {
-            console.log(console.ANSI_YELLOW,"Error en la conexion: " + e.getLocalizedMessage());
+            console.log(console.ANSI_BLUE,"Error en la conexion: " + e.getLocalizedMessage());
             return null;
         }
     }
@@ -141,12 +141,22 @@ public class Conexion {
     }
 
     public static void insertArray(String nombre_tabla, JSONArray json) throws SQLException{
-    
         String funct = "insert into " + nombre_tabla + " (select * from json_populate_recordset(null::" + nombre_tabla
             + ", '" + json.toString() + "')) RETURNING key";
         PreparedStatement ps = con.prepareStatement(funct);
         ps.executeQuery();
-        
+        ps.close();
+    }
+
+    public static void createTable(String nombre_tabla, JSONObject tabla){
+        try{
+            String funct = "EXECUTE create_table_from_json('" + nombre_tabla + "','" + tabla.toString() + "'); ";
+            PreparedStatement ps = con.prepareStatement(funct);
+            ps.executeQuery();
+            ps.close();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
     }
 
     public static void anular(String nombre_tabla, String key) throws SQLException {
@@ -197,6 +207,7 @@ public class Conexion {
         String funct = "update "+nombre_tabla+" set "+aux+" where key ='"+obj.getString("key")+"'";
         PreparedStatement ps = con.prepareStatement(funct);
         ps.executeUpdate();
+        ps.close();
         return true;
     }
 
